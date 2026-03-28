@@ -1,13 +1,12 @@
 [phases.install]
 cmds = [
-  "composer install --optimize-autoloader --no-scripts --no-interaction --ignore-platform-reqs"
+  "composer install --optimize-autoloader --no-scripts --no-interaction --ignore-platform-reqs --no-plugins"
 ]
 
 [phases.build]
 cmds = [
-  "npm ci",
-  "npm run build",
-  "chmod +x start.sh"
+  "npm ci --prefer-offline",
+  "npm run build"
 ]
 
 [start]
