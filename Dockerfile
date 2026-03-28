@@ -1,4 +1,3 @@
-# Use the production Dockerfile
 # syntax=docker/dockerfile:1
 ARG SERVERSIDEUP_PHP_VERSION=8.4-fpm-nginx-alpine
 ARG MINIO_VERSION=RELEASE.2025-05-21T01-59-54Z
