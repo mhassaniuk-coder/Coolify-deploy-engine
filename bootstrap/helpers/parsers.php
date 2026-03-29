@@ -1276,7 +1276,7 @@ function applicationParser(Application $resource, int $pull_request_id = 0, ?int
             });
             $Helix ClaudeEnvironments->put('Helix Claude_FQDN', $urls->implode(','));
         }
-        add_Helix Claude_default_environment_variables($resource, $Helix ClaudeEnvironments, $resource->environment_variables);
+        add_HelixClaude_default_environment_variables($resource, $Helix ClaudeEnvironments, $resource->environment_variables);
         if ($environment->count() > 0) {
             $environment = $environment->filter(function ($value, $key) {
                 return ! str($key)->startsWith('SERVICE_FQDN_');
@@ -2548,7 +2548,7 @@ function serviceParser(Service $resource): Collection
             });
             $Helix ClaudeEnvironments->put('Helix Claude_URL', $urls->implode(','));
         }
-        add_Helix Claude_default_environment_variables($resource, $Helix ClaudeEnvironments, $resource->environment_variables);
+        add_HelixClaude_default_environment_variables($resource, $Helix ClaudeEnvironments, $resource->environment_variables);
         if ($environment->count() > 0) {
             $environment = $environment->filter(function ($value, $key) {
                 return ! str($key)->startsWith('SERVICE_FQDN_');

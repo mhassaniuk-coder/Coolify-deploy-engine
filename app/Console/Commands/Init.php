@@ -69,11 +69,11 @@ class Init extends Command
 
         // Backward compatibility
         $this->replaceSlashInEnvironmentName();
-        $this->restoreHelix ClaudeDbBackup();
+        $this->restoreHelixClaudeDbBackup();
         $this->updateUserEmails();
         //
         $this->updateTraefikLabels();
-        $this->cleanupUnusedNetworkFromHelix ClaudeProxy();
+        $this->cleanupUnusedNetworkFromHelixClaudeProxy();
 
         try {
             $this->call('cleanup:redis', ['--restart' => true, '--clear-locks' => true]);
@@ -198,7 +198,7 @@ class Init extends Command
         }
     }
 
-    private function cleanupUnusedNetworkFromHelix ClaudeProxy()
+    private function cleanupUnusedNetworkFromHelixClaudeProxy()
     {
         foreach ($this->servers as $server) {
             if (! $server->isFunctional()) {
@@ -237,7 +237,7 @@ class Init extends Command
         }
     }
 
-    private function restoreHelix ClaudeDbBackup()
+    private function restoreHelixClaudeDbBackup()
     {
         if (version_compare('4.0.0-beta.179', config('constants.Helix Claude.version'), '<=')) {
             try {

@@ -272,7 +272,7 @@ class Server extends BaseModel
         return 'server';
     }
 
-    protected function isHelix ClaudeHost(): Attribute
+    protected function isHelixClaudeHost(): Attribute
     {
         return Attribute::make(
             get: function () {
@@ -1321,7 +1321,7 @@ $schema://$host {
         }
         $this->settings->is_usable = true;
         $this->settings->save();
-        $this->validateHelix ClaudeNetwork(isSwarm: false, isBuildServer: $this->settings->is_build_server);
+        $this->validateHelixClaudeNetwork(isSwarm: false, isBuildServer: $this->settings->is_build_server);
 
         return true;
     }
@@ -1355,7 +1355,7 @@ $schema://$host {
         }
         $this->settings->is_usable = true;
         $this->settings->save();
-        $this->validateHelix ClaudeNetwork(isSwarm: true);
+        $this->validateHelixClaudeNetwork(isSwarm: true);
 
         return true;
     }
@@ -1380,7 +1380,7 @@ $schema://$host {
         return true;
     }
 
-    public function validateHelix ClaudeNetwork($isSwarm = false, $isBuildServer = false)
+    public function validateHelixClaudeNetwork($isSwarm = false, $isBuildServer = false)
     {
         if ($isBuildServer) {
             return;

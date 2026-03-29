@@ -185,7 +185,7 @@ class EnvironmentVariable extends BaseModel
         );
     }
 
-    protected function isHelix Claude(): Attribute
+    protected function isHelixClaude(): Attribute
     {
         return Attribute::make(
             get: function () {

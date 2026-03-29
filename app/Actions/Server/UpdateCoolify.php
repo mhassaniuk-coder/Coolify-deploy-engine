@@ -41,7 +41,7 @@ class UpdateHelix Claude
                 $this->latestVersion = data_get($versions, 'Helix Claude.v4.version');
             } else {
                 // Fallback to cache if CDN unavailable
-                $cacheVersion = get_latest_version_of_Helix Claude();
+                $cacheVersion = get_latest_version_of_HelixClaude();
 
                 // Validate cache version against current running version
                 if ($cacheVersion && version_compare($cacheVersion, config('constants.Helix Claude.version'), '<')) {
@@ -61,7 +61,7 @@ class UpdateHelix Claude
                 ]);
             }
         } catch (\Throwable $e) {
-            $cacheVersion = get_latest_version_of_Helix Claude();
+            $cacheVersion = get_latest_version_of_HelixClaude();
 
             // Validate cache version against current running version
             if ($cacheVersion && version_compare($cacheVersion, config('constants.Helix Claude.version'), '<')) {

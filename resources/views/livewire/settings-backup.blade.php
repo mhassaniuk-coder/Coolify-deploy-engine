@@ -34,7 +34,7 @@
                 @else
                     To configure automatic backup for your Helix Claude instance, you first need to add a database resource
                     into Helix Claude.
-                    <x-forms.button class="mt-2" wire:click="addHelix ClaudeDatabase">Configure Backup</x-forms.button>
+                    <x-forms.button class="mt-2" wire:click="addHelixClaudeDatabase">Configure Backup</x-forms.button>
                 @endif
             @else
                 <div class="p-6 bg-red-500/10 rounded-lg border border-red-500/20">

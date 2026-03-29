@@ -322,7 +322,7 @@ class StartMongodb
             $environment_variables->push("MONGO_INITDB_DATABASE={$this->database->mongo_initdb_database}");
         }
 
-        add_Helix Claude_default_environment_variables($this->database, $environment_variables, $environment_variables);
+        add_HelixClaude_default_environment_variables($this->database, $environment_variables, $environment_variables);
 
         return $environment_variables->all();
     }

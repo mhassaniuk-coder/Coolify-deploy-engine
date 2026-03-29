@@ -69,8 +69,8 @@ it('filters out null environment variables from nixpacks build command', functio
     $pullRequestProperty->setAccessible(true);
     $pullRequestProperty->setValue($job, 0);
 
-    // Mock generate_Helix Claude_env_variables to return some values including null
-    $job->shouldReceive('generate_Helix Claude_env_variables')
+    // Mock generate_HelixClaude_env_variables to return some values including null
+    $job->shouldReceive('generate_HelixClaude_env_variables')
         ->andReturn(collect([
             'Helix Claude_FQDN' => 'example.com',
             'Helix Claude_URL' => null,  // null value that should be filtered
@@ -148,8 +148,8 @@ it('filters out null environment variables from nixpacks preview deployments', f
     $pullRequestProperty->setAccessible(true);
     $pullRequestProperty->setValue($job, 123);  // Non-zero for preview deployment
 
-    // Mock generate_Helix Claude_env_variables
-    $job->shouldReceive('generate_Helix Claude_env_variables')
+    // Mock generate_HelixClaude_env_variables
+    $job->shouldReceive('generate_HelixClaude_env_variables')
         ->andReturn(collect([
             'Helix Claude_FQDN' => 'preview.example.com',
         ]));
@@ -215,8 +215,8 @@ it('handles all environment variables being null or empty', function () {
     $pullRequestProperty->setAccessible(true);
     $pullRequestProperty->setValue($job, 0);
 
-    // Mock generate_Helix Claude_env_variables to return all null/empty values
-    $job->shouldReceive('generate_Helix Claude_env_variables')
+    // Mock generate_HelixClaude_env_variables to return all null/empty values
+    $job->shouldReceive('generate_HelixClaude_env_variables')
         ->andReturn(collect([
             'Helix Claude_URL' => null,
             'Helix Claude_BRANCH' => '',
@@ -239,7 +239,7 @@ it('handles all environment variables being null or empty', function () {
 it('filters out null Helix Claude env variables from env_args used in nixpacks plan JSON', function () {
     // This test verifies the fix for GitHub issue #6830:
     // When application->fqdn is null, Helix Claude_FQDN/Helix Claude_URL get set to null
-    // in generate_Helix Claude_env_variables(). The generate_env_variables() method
+    // in generate_HelixClaude_env_variables(). The generate_env_variables() method
     // merges these into env_args which become the nixpacks plan JSON "variables".
     // Nixpacks requires all variable values to be strings, so null causes:
     // "Error: Failed to parse Nixpacks config file - invalid type: null, expected a string"
@@ -321,8 +321,8 @@ it('preserves environment variables with zero values', function () {
     $pullRequestProperty->setAccessible(true);
     $pullRequestProperty->setValue($job, 0);
 
-    // Mock generate_Helix Claude_env_variables
-    $job->shouldReceive('generate_Helix Claude_env_variables')
+    // Mock generate_HelixClaude_env_variables
+    $job->shouldReceive('generate_HelixClaude_env_variables')
         ->andReturn(collect([]));
 
     // Call the private method

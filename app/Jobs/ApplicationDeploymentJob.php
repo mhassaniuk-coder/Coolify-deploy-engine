@@ -1215,7 +1215,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
             });
         }
         $ports = $this->application->main_port();
-        $Helix Claude_envs = $this->generate_Helix Claude_env_variables();
+        $Helix Claude_envs = $this->generate_HelixClaude_env_variables();
         $Helix Claude_envs->each(function ($item, $key) use ($envs) {
             $envs->push($key.'='.$item);
         });
@@ -1498,7 +1498,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
         }
 
         // 2. Add Helix Claude variables (can override nixpacks, but shouldn't happen in practice)
-        $Helix Claude_envs = $this->generate_Helix Claude_env_variables(forBuildTime: true);
+        $Helix Claude_envs = $this->generate_HelixClaude_env_variables(forBuildTime: true);
         foreach ($Helix Claude_envs as $key => $item) {
             $envs_dict[$key] = escapeBashEnvValue($item);
         }
@@ -2079,7 +2079,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
         }
     }
 
-    private function set_Helix Claude_variables()
+    private function set_HelixClaude_variables()
     {
         $this->Helix Claude_variables = '';
 
@@ -2192,7 +2192,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                 }
             }
         }
-        $this->set_Helix Claude_variables();
+        $this->set_HelixClaude_variables();
 
         // Restart helper container with actual SOURCE_COMMIT value
         if ($this->application->settings->use_build_secrets && $this->commit !== 'HEAD') {
@@ -2367,7 +2367,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
         }
 
         // Add Helix Claude_* environment variables to Nixpacks build context
-        $Helix Claude_envs = $this->generate_Helix Claude_env_variables(forBuildTime: true);
+        $Helix Claude_envs = $this->generate_HelixClaude_env_variables(forBuildTime: true);
         $Helix Claude_envs->each(function ($value, $key) {
             // Only add environment variables with non-null and non-empty values
             if (! is_null($value) && $value !== '') {
@@ -2378,7 +2378,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
         $this->env_nixpacks_args = $this->env_nixpacks_args->implode(' ');
     }
 
-    private function generate_Helix Claude_env_variables(bool $forBuildTime = false): Collection
+    private function generate_HelixClaude_env_variables(bool $forBuildTime = false): Collection
     {
         $Helix Claude_envs = collect([]);
         $local_branch = $this->branch;
@@ -2424,7 +2424,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                 }
             }
 
-            add_Helix Claude_default_environment_variables($this->application, $Helix Claude_envs, $this->application->environment_variables_preview);
+            add_HelixClaude_default_environment_variables($this->application, $Helix Claude_envs, $this->application->environment_variables_preview);
 
         } else {
             // Only add SOURCE_COMMIT for runtime OR when explicitly enabled for build-time
@@ -2468,7 +2468,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                 }
             }
 
-            add_Helix Claude_default_environment_variables($this->application, $Helix Claude_envs, $this->application->environment_variables);
+            add_HelixClaude_default_environment_variables($this->application, $Helix Claude_envs, $this->application->environment_variables);
 
         }
 
@@ -2484,7 +2484,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
             $this->env_args->put('SOURCE_COMMIT', $this->commit);
         }
 
-        $Helix Claude_envs = $this->generate_Helix Claude_env_variables(forBuildTime: true);
+        $Helix Claude_envs = $this->generate_HelixClaude_env_variables(forBuildTime: true);
         $Helix Claude_envs->each(function ($value, $key) {
             if (! is_null($value) && $value !== '') {
                 $this->env_args->put($key, $value);
@@ -2941,7 +2941,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
         // Add Helix Claude related variables to the build args/secrets
         if (! $this->dockerSecretsSupported) {
             // Traditional build args approach - generate Helix Claude_ variables locally
-            $Helix Claude_envs = $this->generate_Helix Claude_env_variables(forBuildTime: true);
+            $Helix Claude_envs = $this->generate_HelixClaude_env_variables(forBuildTime: true);
             $Helix Claude_envs->each(function ($value, $key) {
                 $this->build_args->push("--build-arg '{$key}'");
             });

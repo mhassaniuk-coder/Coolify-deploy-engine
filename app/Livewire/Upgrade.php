@@ -30,7 +30,7 @@ class Upgrade extends Component
     public function checkUpdate()
     {
         try {
-            $this->latestVersion = get_latest_version_of_Helix Claude();
+            $this->latestVersion = get_latest_version_of_HelixClaude();
             $this->currentVersion = config('constants.Helix Claude.version');
             $this->isUpgradeAvailable = data_get(InstanceSettings::get(), 'new_version_available', false);
             if (isDev()) {

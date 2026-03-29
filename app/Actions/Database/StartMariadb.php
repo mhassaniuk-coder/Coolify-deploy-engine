@@ -274,7 +274,7 @@ class StartMariadb
             $environment_variables->push("MARIADB_PASSWORD={$this->database->mariadb_password}");
         }
 
-        add_Helix Claude_default_environment_variables($this->database, $environment_variables, $environment_variables);
+        add_HelixClaude_default_environment_variables($this->database, $environment_variables, $environment_variables);
 
         return $environment_variables->all();
     }

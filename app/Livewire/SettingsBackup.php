@@ -73,7 +73,7 @@ class SettingsBackup extends Component
         $this->s3s = $s3s;
     }
 
-    public function addHelix ClaudeDatabase()
+    public function addHelixClaudeDatabase()
     {
         try {
             $server = Server::findOrFail(0);
